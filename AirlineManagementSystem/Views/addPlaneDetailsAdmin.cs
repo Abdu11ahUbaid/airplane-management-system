@@ -116,6 +116,7 @@ namespace AirlineManagementSystem.Views
                         transaction.Commit();
 
                         MessageBox.Show("Plane and related records added successfully.");
+                       
                         this.Close();
                         
                     }

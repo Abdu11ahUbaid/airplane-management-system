@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using AirlineManagementSystem.Views;
+using AirlineManagementSystem.BL;
 
 namespace AirlineManagementSystem
 {
@@ -22,19 +23,19 @@ namespace AirlineManagementSystem
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             // Get user input from the login form
-            string Username = txtUsernameLogin.Text;
+            string Email = txtUsernameLogin.Text;
             string password = txtPasswordLogin.Text;
 
             try
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Define the SQL query to check customer credentials
+                // SQL query to check customer credentials
                 string selectQuery = "SELECT COUNT(*) FROM Customers WHERE Email = @Email AND Password = @Password";
 
                     using (SqlCommand command = new SqlCommand(selectQuery, con))
                     {
-                        command.Parameters.AddWithValue("@Email", Username);
+                        command.Parameters.AddWithValue("@Email", Email);
                         command.Parameters.AddWithValue("@Password", password);
 
                         int userCount = (int)command.ExecuteScalar();
@@ -42,8 +43,11 @@ namespace AirlineManagementSystem
                         if (userCount > 0)
                         {
                             MessageBox.Show("Login successful.");
+                            // Store the Email for creating specific user session
+                            customerBL.Instance.LoggedInEmail = Email; 
                             // Redirect to the application's main page or dashboard
                             OpenMainPage();
+                            
                         }
                         else
                         {

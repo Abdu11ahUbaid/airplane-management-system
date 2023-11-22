@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AirlineManagementSystem.DL;
+using AirlineManagementSystem.BL;
+using System.Configuration;
 
 namespace AirlineManagementSystem.Views
 {
@@ -70,13 +72,15 @@ namespace AirlineManagementSystem.Views
         private void BookTicket_Click(object sender, EventArgs e)
         {
             // Check if a row is selected
-            if (PlanesSearchGridCustomer.SelectedRows.Count > 0)
+            if (PlanesSearchGridCustomer.SelectedCells.Count > 0)
             {
-                // Retrieve the value from the selected row's "PlaneName" column
-                string selectedPlaneName = PlanesSearchGridCustomer.SelectedRows[0].Cells["PlaneName"].Value.ToString();
+                // Retrieve the value from the selected cell's "PlaneName" column
+                string selectedPlaneName = PlanesSearchGridCustomer.SelectedCells[0].Value.ToString();
 
                 // Get the plane details based on the selected plane name
                 PlaneManagement selectedPlaneDetails = GetPlaneDetails(selectedPlaneName);
+
+                int selectedCustomerID = GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
 
                 // Book the ticket
                 BookTicketMethod(selectedPlaneDetails.PlaneID, selectedCustomerID);
@@ -86,30 +90,71 @@ namespace AirlineManagementSystem.Views
                 MessageBox.Show("Please select a plane to book.");
             }
         }
+
+        private int GetCustomerIDFromDatabase(string username)
+        {
+            // Building Connection with database
+            using (var con = configuration.getInstance().getConnection())
+            {   // Query to get the ID of the customer based on his Email which we stored at the login time
+                string selectCustomerIDQuery = "SELECT CustomerID FROM Customers WHERE Email = @Email";
+
+                using (SqlCommand command = new SqlCommand(selectCustomerIDQuery, con))
+                {
+                    command.Parameters.AddWithValue("@Email", username);
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        return Convert.ToInt32(result);
+                    }
+                }
+            }
+           
+            return -1; // Return a default value or handle the absence of the customer ID based on your application's logic
+        }
+
+
         private void BookTicketMethod(int planeID, int customerID)
         {
             try
-            {
-                var con = configuration.getInstance().getConnection();
-
-                // Write an SQL INSERT statement to add a new record to the Tickets table
-                string bookTicketQuery = "INSERT INTO Tickets (PlaneID, CustomerID, Status, PurchaseDate) " +
-                                         "VALUES (@PlaneID, @CustomerID, 'Booked', GETDATE())";
-
-                // Execute the insert query
-                using (SqlCommand command = new SqlCommand(bookTicketQuery, con))
+            {              
+                // Check if the ticket is already booked for the selected plane and customer
+                if (!IsTicketAlreadyBooked(planeID, customerID))
                 {
-                    command.Parameters.AddWithValue("@PlaneID", planeID);
-                    command.Parameters.AddWithValue("@CustomerID", customerID);
+                    String ConnectionStr = @"Data Source=(local);Initial Catalog=AirplaneManagementSystem;Integrated Security=True";
+                    var con = configuration.getInstance().getConnection();
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con = new SqlConnection(ConnectionStr);
+                        con.Open();
+                    }
+                    // The ticket is not booked, proceed with booking
+                    string bookTicketQuery = "INSERT INTO Tickets (PlaneID, CustomerID, PurchaseDate, Status) " +
+                                             "VALUES (@PlaneID, @CustomerID, GETDATE(), 'Booked')";
 
-                    // Execute the query
-                    command.ExecuteNonQuery();
+                    using (SqlCommand command = new SqlCommand(bookTicketQuery, con))
+                    {
+                        command.Parameters.AddWithValue("@PlaneID", planeID);
+                        command.Parameters.AddWithValue("@CustomerID", customerID);
 
-                    // Optionally, you can perform additional actions after booking the ticket
-                    MessageBox.Show("Ticket booked successfully!");
+                        // Execute the query
+                        int rowsAffected = command.ExecuteNonQuery();
 
-                    // Refresh the GridView to reflect the changes
-                    RefreshGridView();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Ticket booked successfully!");
+                            // Optionally, you can update the status in the grid or refresh the grid
+                            //RefreshPlanesGridCustomer();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to book the ticket.");
+                        }
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ticket is already booked for this plane and customer.");
                 }
             }
             catch (Exception ex)
@@ -117,6 +162,32 @@ namespace AirlineManagementSystem.Views
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        private bool IsTicketAlreadyBooked(int planeID, int customerID)
+        {
+            String ConnectionStr = @"Data Source=(local);Initial Catalog=AirplaneManagementSystem;Integrated Security=True";
+            var con = configuration.getInstance().getConnection();
+            if (con.State == ConnectionState.Closed)
+            {
+                con = new SqlConnection(ConnectionStr);
+                con.Open();
+            }
+            string checkBookingQuery = "SELECT COUNT(*) FROM Tickets WHERE PlaneID = @PlaneID AND CustomerID = @CustomerID";
+
+            using (SqlCommand command = new SqlCommand(checkBookingQuery, con))
+            {
+                command.Parameters.AddWithValue("@PlaneID", planeID);
+                command.Parameters.AddWithValue("@CustomerID", customerID);
+
+                // Execute the query and check if any rows are returned
+                int rowCount = (int)command.ExecuteScalar();
+
+                return rowCount > 0;
+            }
+                // Check if the ticket is already booked for the selected plane and customer
+                
+        }
+
 
         private PlaneManagement GetPlaneDetails(string planeName)
         {
@@ -127,10 +198,12 @@ namespace AirlineManagementSystem.Views
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Write an SQL query to retrieve plane details based on the selected plane name
-                string selectPlaneQuery = "SELECT PlaneID, PlaneType, TicketPrice, DepartureTime, ArrivalTime " +
-                                          "FROM Planes " +
-                                          "WHERE PlaneName = @PlaneName";
+                // SQL query to retrieve plane details based on the selected plane name
+                string selectPlaneQuery = "SELECT p.PlaneID, p.PlaneType, pp.TicketPrice, fr.DepartureTime, fr.ArrivalTime " +
+                          "FROM Planes p " +
+                          "JOIN PlanePrices pp ON p.PlaneID = pp.PlaneID " +
+                          "JOIN FlightRoutes fr ON p.PlaneID = fr.PlaneID " +
+                          "WHERE p.PlaneName = @PlaneName";
 
                 // Execute the query
                 using (SqlCommand command = new SqlCommand(selectPlaneQuery, con))
@@ -151,6 +224,7 @@ namespace AirlineManagementSystem.Views
 
                             // Create a PlaneDetails object
                             planeDetails = new PlaneManagement(planeID, planeName, planeType, ticketPrice, departureTime, arrivalTime);
+                           
                         }
                     }
                 }
@@ -163,5 +237,26 @@ namespace AirlineManagementSystem.Views
             return planeDetails;
         }
 
+        private void PlanesSearchGridCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            /*// Check if the clicked cell is in the "PlaneName" column
+            if (e.ColumnIndex == PlanesSearchGridCustomer.Columns["PlaneName"].Index && e.RowIndex >= 0)
+            {
+                // Retrieve the value from the clicked cell's "PlaneName" column
+                string selectedPlaneName = PlanesSearchGridCustomer.Rows[e.RowIndex].Cells["PlaneName"].Value.ToString();
+
+                // Get the plane details based on the selected plane name
+                PlaneManagement selectedPlaneDetails = GetPlaneDetails(selectedPlaneName);
+
+                int selectedCustomerID = GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
+
+                // Book the ticket
+                BookTicketMethod(selectedPlaneDetails.PlaneID, selectedCustomerID);
+            }
+            else
+            {
+                MessageBox.Show("Please select a plane to book.");
+            }*/
+        }
     }
 }

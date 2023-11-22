@@ -46,6 +46,7 @@ namespace AirlineManagementSystem.Views
 
                 // Set the DataTable as the DataSource for the DataGridView
                 customerGridAdmin.DataSource = dataTable;
+                
             }
             catch (Exception ex)
             {

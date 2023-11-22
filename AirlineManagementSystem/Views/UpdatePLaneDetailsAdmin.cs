@@ -22,15 +22,15 @@ namespace AirlineManagementSystem.Views
 
         private void AddPlaneAdminBtnOkay_Click(object sender, EventArgs e)
         {
-            /*planesBL planes = new planesBL(); */  
-            // Assuming you have controls on your form to capture updated data
+             
+            // Capture the data from the form
             string updatedPlaneName = updatedPlaneNameTextBox.Text;
             string updatedPlaneType = updatedPlaneTypeTextBox.Text;
             decimal updatedTicketPrice = decimal.Parse(updatedTicketPriceTextBox.Text);
             DateTime updatedArrivalTime = updatedArrivalTimeDateTimePicker.Value;
             DateTime updatedDepartureTime = updatedDepartureTimeDateTimePicker.Value;
-            int updatedDepartureCityID = planesBL.GetCityID(departureCityComboBox.SelectedItem.ToString()); // Adjust this based on your actual control
-            int updatedArrivalCityID = planesBL.GetCityID(arrivalCityComboBox.SelectedItem.ToString()); // Adjust this based on your actual control
+            int updatedDepartureCityID = planesBL.GetCityID(departureCityComboBox.SelectedItem.ToString()); 
+            int updatedArrivalCityID = planesBL.GetCityID(arrivalCityComboBox.SelectedItem.ToString()); 
 
             Console.WriteLine($"DepartureCityID: {updatedDepartureCityID}, ArrivalCityID: {updatedArrivalCityID}");
             try
@@ -105,6 +105,7 @@ namespace AirlineManagementSystem.Views
                         Console.WriteLine($"Selected PlaneID after update: {planesBL.Instance.SelectedPlaneID}");
 
                         MessageBox.Show("Plane record updated successfully.");
+                        
                         this.Close();
 
                         // Refresh the DataGridView to reflect the changes

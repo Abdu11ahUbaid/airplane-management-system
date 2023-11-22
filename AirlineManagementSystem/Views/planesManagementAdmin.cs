@@ -117,6 +117,7 @@ namespace AirlineManagementSystem.Views
                         Console.WriteLine($"Retrieved PlaneID: {planeID}");
                     }
                 }
+                
             }
             catch (Exception ex)
             {
@@ -177,7 +178,9 @@ namespace AirlineManagementSystem.Views
                     {
                         MessageBox.Show("Failed to delete the plane record.");
                     }
+
                 }
+               
             }
             catch (Exception ex)
             {

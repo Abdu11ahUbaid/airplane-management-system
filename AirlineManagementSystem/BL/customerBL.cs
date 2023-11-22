@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,6 +23,25 @@ namespace AirlineManagementSystem.BL
             // Return true if registration is successful, otherwise false
             // You should hash the password before storing it in the database
             return true;
+        }
+
+
+
+        private string loggedInEmail;
+        public string LoggedInEmail { get => loggedInEmail; set => loggedInEmail = value; }
+
+        private static customerBL instance;
+
+        public static customerBL Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new customerBL();
+                }
+                return instance;
+            }
         }
 
         // Add other methods for customer-related operations

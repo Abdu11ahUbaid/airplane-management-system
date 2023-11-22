@@ -38,13 +38,17 @@
             // 
             // PlanesSearchGridCustomer
             // 
+            this.PlanesSearchGridCustomer.AllowUserToAddRows = false;
+            this.PlanesSearchGridCustomer.AllowUserToDeleteRows = false;
             this.PlanesSearchGridCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.PlanesSearchGridCustomer.Location = new System.Drawing.Point(101, 113);
+            this.PlanesSearchGridCustomer.Location = new System.Drawing.Point(98, 122);
             this.PlanesSearchGridCustomer.Name = "PlanesSearchGridCustomer";
+            this.PlanesSearchGridCustomer.ReadOnly = true;
             this.PlanesSearchGridCustomer.RowHeadersWidth = 51;
             this.PlanesSearchGridCustomer.RowTemplate.Height = 24;
             this.PlanesSearchGridCustomer.Size = new System.Drawing.Size(595, 316);
             this.PlanesSearchGridCustomer.TabIndex = 2;
+            this.PlanesSearchGridCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.PlanesSearchGridCustomer_CellClick);
             // 
             // ArrivalcomboBox
             // 
@@ -63,7 +67,7 @@
             "Faisalabad",
             "Islamabad",
             "Hyderabad"});
-            this.ArrivalcomboBox.Location = new System.Drawing.Point(418, 53);
+            this.ArrivalcomboBox.Location = new System.Drawing.Point(417, 53);
             this.ArrivalcomboBox.Name = "ArrivalcomboBox";
             this.ArrivalcomboBox.Size = new System.Drawing.Size(252, 24);
             this.ArrivalcomboBox.TabIndex = 7;
@@ -110,7 +114,7 @@
             this.BookTicket.ForeColor = System.Drawing.Color.White;
             this.BookTicket.Location = new System.Drawing.Point(358, 84);
             this.BookTicket.Name = "BookTicket";
-            this.BookTicket.Size = new System.Drawing.Size(75, 23);
+            this.BookTicket.Size = new System.Drawing.Size(75, 32);
             this.BookTicket.TabIndex = 10;
             this.BookTicket.Text = "Book";
             this.BookTicket.UseVisualStyleBackColor = false;

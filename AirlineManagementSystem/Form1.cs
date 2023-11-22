@@ -70,7 +70,6 @@ namespace AirlineManagementSystem
                             MessageBox.Show("Registration failed. Please try again.");
                         }
                     }
-                
             }
             catch (Exception ex)
             {

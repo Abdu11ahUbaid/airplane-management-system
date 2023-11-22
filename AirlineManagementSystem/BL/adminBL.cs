@@ -65,6 +65,7 @@ namespace AirlineManagementSystem.BL
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     adapter.Fill(planeRecords);
                 }
+                
             }
             catch (Exception ex)
             {
