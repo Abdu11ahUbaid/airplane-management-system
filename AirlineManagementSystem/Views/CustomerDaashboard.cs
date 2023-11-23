@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirlineManagementSystem.BL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,11 +16,19 @@ namespace AirlineManagementSystem.Views
         public CustomerDaashboard()
         {
             InitializeComponent();
+            // Capture the Username/Name of the Customer by using it Email at the login Time
+            //string loggedInEmail = customerBL.Instance.LoggedInEmail;
+            //string username = customerBL.GetUsernameFromEmail(loggedInEmail);
+
+            // Now 'username' contains the username of the logged-in customer
+            //nameCustomerLabel.Text = username;
+            loadform(new CustomerHome());
+
         }
 
         private void CloseAppCustomerbtn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void signOutCustomerbtn_Click(object sender, EventArgs e)
@@ -52,10 +61,7 @@ namespace AirlineManagementSystem.Views
             loadform(new SearchFlightsCustomerForm());
         }
 
-        private void PlaneManagementAdminbtn_Click_1(object sender, EventArgs e)
-        {
-            loadform(new TicketsCustomerForm());
-        }
+        
 
         private void nameCustomerLabel_Click(object sender, EventArgs e)
         {

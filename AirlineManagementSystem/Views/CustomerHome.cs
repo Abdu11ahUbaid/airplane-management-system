@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AirlineManagementSystem.BL;
 
 namespace AirlineManagementSystem.Views
 {
@@ -15,6 +16,14 @@ namespace AirlineManagementSystem.Views
         public CustomerHome()
         {
             InitializeComponent();
+            int customerID = customerBL.GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
+            LoadTicketHistory(customerID);
+        }
+
+        private void LoadTicketHistory(int customerID)
+        {
+            DataTable ticketHistory = ticketsBL.GetTicketHistory(customerID);
+            ticketsHistoryGridCustomer.DataSource = ticketHistory;
         }
     }
 }

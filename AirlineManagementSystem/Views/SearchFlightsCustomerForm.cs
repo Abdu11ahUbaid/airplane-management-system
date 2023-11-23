@@ -37,7 +37,7 @@ namespace AirlineManagementSystem.Views
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Write a SQL query to retrieve active planes based on selected departure and arrival cities
+                //SQL query to retrieve active planes based on selected departure and arrival cities
                 string selectPlanesQuery = "SELECT PlaneName, PlaneType, TicketPrice, DepartureTime, ArrivalTime " +
                                            "FROM Planes " +
                                            "JOIN FlightRoutes ON Planes.PlaneID = FlightRoutes.PlaneID " +
@@ -48,10 +48,10 @@ namespace AirlineManagementSystem.Views
                                            "AND DepartureCity.CityName = @DepartureCity " +
                                            "AND ArrivalCity.CityName = @ArrivalCity";
 
-                // Create a DataTable to store the results
+                // DataTable to store the results
                 DataTable dataTable = new DataTable();
 
-                // Use a SqlDataAdapter to fill the DataTable with the results of the query
+                // SqlDataAdapter to fill the DataTable with the results of the query
                 using (SqlDataAdapter adapter = new SqlDataAdapter(selectPlanesQuery, con))
                 {
                     adapter.SelectCommand.Parameters.AddWithValue("@DepartureCity", DeparturecomboBox.SelectedItem.ToString());
@@ -60,7 +60,7 @@ namespace AirlineManagementSystem.Views
                     adapter.Fill(dataTable);
                 }
 
-                // Set the DataTable as the DataSource for the DataGridView
+                //DataTable as the DataSource for the DataGridView
                 PlanesSearchGridCustomer.DataSource = dataTable;
             }
             catch (Exception ex)
@@ -80,10 +80,10 @@ namespace AirlineManagementSystem.Views
                 // Get the plane details based on the selected plane name
                 PlaneManagement selectedPlaneDetails = GetPlaneDetails(selectedPlaneName);
 
-                int selectedCustomerID = GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
+                int selectedCustomerID = customerBL.GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
 
                 // Book the ticket
-                BookTicketMethod(selectedPlaneDetails.PlaneID, selectedCustomerID);
+                ticketsBL.BookTicketMethod(selectedPlaneDetails.PlaneID, selectedCustomerID);
             }
             else
             {
@@ -91,7 +91,7 @@ namespace AirlineManagementSystem.Views
             }
         }
 
-        private int GetCustomerIDFromDatabase(string username)
+        /*private int GetCustomerIDFromDatabase(string username)
         {
             // Building Connection with database
             using (var con = configuration.getInstance().getConnection())
@@ -111,10 +111,10 @@ namespace AirlineManagementSystem.Views
             }
            
             return -1; // Return a default value or handle the absence of the customer ID based on your application's logic
-        }
+        }*/
 
 
-        private void BookTicketMethod(int planeID, int customerID)
+        /*private void BookTicketMethod(int planeID, int customerID)
         {
             try
             {              
@@ -186,7 +186,7 @@ namespace AirlineManagementSystem.Views
             }
                 // Check if the ticket is already booked for the selected plane and customer
                 
-        }
+        }*/
 
 
         private PlaneManagement GetPlaneDetails(string planeName)

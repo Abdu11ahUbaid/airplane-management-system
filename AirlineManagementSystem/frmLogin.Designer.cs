@@ -130,7 +130,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
             this.label1.Location = new System.Drawing.Point(28, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(194, 34);
+            this.label1.Size = new System.Drawing.Size(191, 33);
             this.label1.TabIndex = 5;
             this.label1.Text = "Get Started";
             // 
@@ -150,6 +150,8 @@
             // AdminLoginFormbtn
             // 
             this.AdminLoginFormbtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.AdminLoginFormbtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AdminLoginFormbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.AdminLoginFormbtn.ForeColor = System.Drawing.Color.White;
             this.AdminLoginFormbtn.Location = new System.Drawing.Point(57, 392);
             this.AdminLoginFormbtn.Name = "AdminLoginFormbtn";
@@ -178,7 +180,7 @@
             this.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";

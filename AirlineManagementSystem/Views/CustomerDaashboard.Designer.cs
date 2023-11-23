@@ -31,15 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerDaashboard));
             this.PanelCustomerMain = new System.Windows.Forms.Panel();
             this.PanelCustomerSide = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.signOutCustomerbtn = new System.Windows.Forms.Button();
-            this.PlaneManagementAdminbtn = new System.Windows.Forms.Button();
             this.HomeCustomer = new System.Windows.Forms.Button();
             this.PanelCustomerheader = new System.Windows.Forms.Panel();
             this.nameCustomerLabel = new System.Windows.Forms.Label();
             this.welcometxtlabelCustomer = new System.Windows.Forms.Label();
             this.CloseAppCustomerbtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.PanelCustomerSide.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.PanelCustomerheader.SuspendLayout();
@@ -59,13 +58,26 @@
             this.PanelCustomerSide.Controls.Add(this.button1);
             this.PanelCustomerSide.Controls.Add(this.pictureBox1);
             this.PanelCustomerSide.Controls.Add(this.signOutCustomerbtn);
-            this.PanelCustomerSide.Controls.Add(this.PlaneManagementAdminbtn);
             this.PanelCustomerSide.Controls.Add(this.HomeCustomer);
             this.PanelCustomerSide.Dock = System.Windows.Forms.DockStyle.Left;
             this.PanelCustomerSide.Location = new System.Drawing.Point(0, 38);
             this.PanelCustomerSide.Name = "PanelCustomerSide";
             this.PanelCustomerSide.Size = new System.Drawing.Size(200, 520);
             this.PanelCustomerSide.TabIndex = 6;
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(0, 168);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(200, 39);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Planes";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pictureBox1
             // 
@@ -92,20 +104,6 @@
             this.signOutCustomerbtn.Text = "Sign out";
             this.signOutCustomerbtn.UseVisualStyleBackColor = true;
             this.signOutCustomerbtn.Click += new System.EventHandler(this.signOutCustomerbtn_Click);
-            // 
-            // PlaneManagementAdminbtn
-            // 
-            this.PlaneManagementAdminbtn.FlatAppearance.BorderSize = 0;
-            this.PlaneManagementAdminbtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlaneManagementAdminbtn.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlaneManagementAdminbtn.ForeColor = System.Drawing.Color.White;
-            this.PlaneManagementAdminbtn.Location = new System.Drawing.Point(0, 213);
-            this.PlaneManagementAdminbtn.Name = "PlaneManagementAdminbtn";
-            this.PlaneManagementAdminbtn.Size = new System.Drawing.Size(200, 39);
-            this.PlaneManagementAdminbtn.TabIndex = 0;
-            this.PlaneManagementAdminbtn.Text = "Tickets";
-            this.PlaneManagementAdminbtn.UseVisualStyleBackColor = true;
-            this.PlaneManagementAdminbtn.Click += new System.EventHandler(this.PlaneManagementAdminbtn_Click_1);
             // 
             // HomeCustomer
             // 
@@ -170,20 +168,6 @@
             this.CloseAppCustomerbtn.UseVisualStyleBackColor = true;
             this.CloseAppCustomerbtn.Click += new System.EventHandler(this.CloseAppCustomerbtn_Click);
             // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(0, 168);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(200, 39);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Planes";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // CustomerDaashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -210,7 +194,6 @@
         private System.Windows.Forms.Panel PanelCustomerSide;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button signOutCustomerbtn;
-        private System.Windows.Forms.Button PlaneManagementAdminbtn;
         private System.Windows.Forms.Button HomeCustomer;
         private System.Windows.Forms.Panel PanelCustomerheader;
         private System.Windows.Forms.Label nameCustomerLabel;

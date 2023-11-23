@@ -18,7 +18,6 @@ F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagement
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.CustomerDaashboard.resources
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.CustomerHome.resources
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.SearchFlightsCustomerForm.resources
-F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.TicketsCustomerForm.resources
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.addPlaneDetailsAdmin.resources
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.UpdatePLaneDetailsAdmin.resources
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\bin\Debug\EPPlus.dll
