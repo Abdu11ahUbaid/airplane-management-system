@@ -42,7 +42,6 @@ namespace AirlineManagementSystem
 
                         if (userCount > 0)
                         {
-                            MessageBox.Show("Login successful.");
                             // Store the Email for creating specific user session
                             customerBL.Instance.LoggedInEmail = Email; 
                             // Redirect to the application's main page or dashboard

@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboardMain));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panelSideMain = new System.Windows.Forms.Panel();
+            this.TicketsManagementAdmin = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.signOutAdminbtn = new System.Windows.Forms.Button();
             this.ReportsAdminBtn = new System.Windows.Forms.Button();
@@ -41,6 +42,7 @@
             this.nameAdminLabel = new System.Windows.Forms.Label();
             this.welcometxtlabelAdmin = new System.Windows.Forms.Label();
             this.CloseAppAdminbtn = new System.Windows.Forms.Button();
+            this.RevenueAdmin = new System.Windows.Forms.Button();
             this.panelSideMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelHeaderMain.SuspendLayout();
@@ -58,6 +60,8 @@
             // panelSideMain
             // 
             this.panelSideMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.panelSideMain.Controls.Add(this.RevenueAdmin);
+            this.panelSideMain.Controls.Add(this.TicketsManagementAdmin);
             this.panelSideMain.Controls.Add(this.pictureBox1);
             this.panelSideMain.Controls.Add(this.signOutAdminbtn);
             this.panelSideMain.Controls.Add(this.ReportsAdminBtn);
@@ -70,6 +74,20 @@
             this.panelSideMain.Size = new System.Drawing.Size(200, 502);
             this.panelSideMain.TabIndex = 3;
             this.panelSideMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelSideMain_Paint);
+            // 
+            // TicketsManagementAdmin
+            // 
+            this.TicketsManagementAdmin.FlatAppearance.BorderSize = 0;
+            this.TicketsManagementAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TicketsManagementAdmin.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TicketsManagementAdmin.ForeColor = System.Drawing.Color.White;
+            this.TicketsManagementAdmin.Location = new System.Drawing.Point(0, 249);
+            this.TicketsManagementAdmin.Name = "TicketsManagementAdmin";
+            this.TicketsManagementAdmin.Size = new System.Drawing.Size(200, 39);
+            this.TicketsManagementAdmin.TabIndex = 0;
+            this.TicketsManagementAdmin.Text = "Tickets Management";
+            this.TicketsManagementAdmin.UseVisualStyleBackColor = true;
+            this.TicketsManagementAdmin.Click += new System.EventHandler(this.TicketsManagementAdmin_Click);
             // 
             // pictureBox1
             // 
@@ -103,7 +121,7 @@
             this.ReportsAdminBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ReportsAdminBtn.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ReportsAdminBtn.ForeColor = System.Drawing.Color.White;
-            this.ReportsAdminBtn.Location = new System.Drawing.Point(0, 249);
+            this.ReportsAdminBtn.Location = new System.Drawing.Point(0, 339);
             this.ReportsAdminBtn.Name = "ReportsAdminBtn";
             this.ReportsAdminBtn.Size = new System.Drawing.Size(200, 39);
             this.ReportsAdminBtn.TabIndex = 0;
@@ -202,6 +220,20 @@
             this.CloseAppAdminbtn.UseVisualStyleBackColor = true;
             this.CloseAppAdminbtn.Click += new System.EventHandler(this.CloseAppAdminbtn_Click_1);
             // 
+            // RevenueAdmin
+            // 
+            this.RevenueAdmin.FlatAppearance.BorderSize = 0;
+            this.RevenueAdmin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RevenueAdmin.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RevenueAdmin.ForeColor = System.Drawing.Color.White;
+            this.RevenueAdmin.Location = new System.Drawing.Point(0, 294);
+            this.RevenueAdmin.Name = "RevenueAdmin";
+            this.RevenueAdmin.Size = new System.Drawing.Size(200, 39);
+            this.RevenueAdmin.TabIndex = 0;
+            this.RevenueAdmin.Text = "Revenue";
+            this.RevenueAdmin.UseVisualStyleBackColor = true;
+            this.RevenueAdmin.Click += new System.EventHandler(this.RevenueAdmin_Click);
+            // 
             // AdminDashboardMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -238,5 +270,7 @@
         private System.Windows.Forms.Label nameAdminLabel;
         private System.Windows.Forms.Label welcometxtlabelAdmin;
         private System.Windows.Forms.Button CloseAppAdminbtn;
+        private System.Windows.Forms.Button TicketsManagementAdmin;
+        private System.Windows.Forms.Button RevenueAdmin;
     }
 }

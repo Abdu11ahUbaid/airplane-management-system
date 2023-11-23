@@ -1,10 +1,12 @@
-﻿using System;
+﻿using AirlineManagementSystem.BL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace AirlineManagementSystem.Views
 {
@@ -28,7 +30,7 @@ namespace AirlineManagementSystem.Views
                 var con = configuration.getInstance().getConnection();
 
                 // Write a SQL query to retrieve customer records based on the search term
-                string searchQuery = "SELECT CustomerID, Username, Email, PhoneNo FROM Customers WHERE Username LIKE @SearchTerm OR Email LIKE @SearchTerm";
+                string searchQuery = "SELECT CustomerID, Name, Email, Phone FROM Customers WHERE Name LIKE @SearchTerm OR Email LIKE @SearchTerm";
 
                 // Create a DataTable to store the results
                 DataTable dataTable = new DataTable();
@@ -66,30 +68,27 @@ namespace AirlineManagementSystem.Views
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Write a SQL query to retrieve registered customers and their booked tickets
-                string selectCustomersQuery = "SELECT Customers.CustomerID, Customers.Name, Customers.Email, " +
-                                              "Tickets.TicketID, Tickets.PlaneID, Tickets.PurchaseDate, Tickets.Status " +
-                                              "FROM Customers " +
-                                              "LEFT JOIN Tickets ON Customers.CustomerID = Tickets.CustomerID";
+                // Write a SQL query to retrieve all customer details
+                string allCustomersQuery = "SELECT Name, Phone, Email FROM Customers";
 
                 // Create a DataTable to store the results
                 DataTable dataTable = new DataTable();
 
                 // Use a SqlDataAdapter to fill the DataTable with the results of the query
-                using (SqlDataAdapter adapter = new SqlDataAdapter(selectCustomersQuery, con))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(allCustomersQuery, con))
                 {
                     adapter.Fill(dataTable);
                 }
 
                 // Set the DataTable as the DataSource for the DataGridView
                 customerGridAdmin.DataSource = dataTable;
-                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }
+
 
         private void customerSearch_Click(object sender, EventArgs e)
         {

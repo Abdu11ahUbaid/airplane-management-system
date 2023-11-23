@@ -140,11 +140,23 @@
     <Compile Include="Views\ReportsAdmin.Designer.cs">
       <DependentUpon>ReportsAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\revenueAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\revenueAdmin.Designer.cs">
+      <DependentUpon>revenueAdmin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\SearchFlightsCustomerForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\SearchFlightsCustomerForm.Designer.cs">
       <DependentUpon>SearchFlightsCustomerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ticketManagementAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ticketManagementAdmin.Designer.cs">
+      <DependentUpon>ticketManagementAdmin.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdatePLaneDetailsAdmin.cs">
       <SubType>Form</SubType>
@@ -194,8 +206,14 @@
     <EmbeddedResource Include="Views\ReportsAdmin.resx">
       <DependentUpon>ReportsAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\revenueAdmin.resx">
+      <DependentUpon>revenueAdmin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\SearchFlightsCustomerForm.resx">
       <DependentUpon>SearchFlightsCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ticketManagementAdmin.resx">
+      <DependentUpon>ticketManagementAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\UpdatePLaneDetailsAdmin.resx">
       <DependentUpon>UpdatePLaneDetailsAdmin.cs</DependentUpon>

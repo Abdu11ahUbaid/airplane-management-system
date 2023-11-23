@@ -28,3 +28,5 @@ F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagement
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\bin\Debug\EPPlus.xml
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.csproj.CopyComplete
+F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.ticketManagementAdmin.resources
+F:\Study\semester 5\SE Lab\Mid Project\AirlineManagementSystem\AirlineManagementSystem\obj\Debug\AirlineManagementSystem.Views.revenueAdmin.resources

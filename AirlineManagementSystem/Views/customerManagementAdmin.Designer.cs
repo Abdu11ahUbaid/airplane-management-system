@@ -39,7 +39,7 @@
             // SearchCustomerAdmin
             // 
             this.SearchCustomerAdmin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.SearchCustomerAdmin.Location = new System.Drawing.Point(227, 35);
+            this.SearchCustomerAdmin.Location = new System.Drawing.Point(184, 35);
             this.SearchCustomerAdmin.Name = "SearchCustomerAdmin";
             this.SearchCustomerAdmin.Size = new System.Drawing.Size(335, 22);
             this.SearchCustomerAdmin.TabIndex = 6;
@@ -54,7 +54,7 @@
             this.customerGridAdmin.ReadOnly = true;
             this.customerGridAdmin.RowHeadersWidth = 51;
             this.customerGridAdmin.RowTemplate.Height = 24;
-            this.customerGridAdmin.Size = new System.Drawing.Size(690, 346);
+            this.customerGridAdmin.Size = new System.Drawing.Size(619, 346);
             this.customerGridAdmin.TabIndex = 4;
             this.customerGridAdmin.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customerGridAdmin_CellContentClick);
             // 
@@ -65,7 +65,7 @@
             this.customerSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.customerSearch.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.customerSearch.ForeColor = System.Drawing.Color.White;
-            this.customerSearch.Location = new System.Drawing.Point(580, 28);
+            this.customerSearch.Location = new System.Drawing.Point(540, 28);
             this.customerSearch.Name = "customerSearch";
             this.customerSearch.Size = new System.Drawing.Size(75, 33);
             this.customerSearch.TabIndex = 7;

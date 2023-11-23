@@ -87,5 +87,15 @@ namespace AirlineManagementSystem.Views
             this.Close();
             
         }
+
+        private void TicketsManagementAdmin_Click(object sender, EventArgs e)
+        {
+            loadform(new ticketManagementAdmin());
+        }
+
+        private void RevenueAdmin_Click(object sender, EventArgs e)
+        {
+            loadform(new revenueAdmin());
+        }
     }
 }

@@ -42,7 +42,6 @@ namespace AirlineManagementSystem
 
                     if (userCount > 0)
                     {
-                        MessageBox.Show("Login successful.");
                         // Redirect to the application's main page or dashboard
                         OpenMainPage();
                     }
