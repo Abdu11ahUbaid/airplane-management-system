@@ -42,6 +42,20 @@ namespace AirlineManagementSystem
             string phone = txtBoxPhoneNumber.Text.Trim();
             string password = txtPassword.Text;
 
+            // Validate email format
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Please enter a valid email address.");
+                return;
+            }
+
+            // Validate password length
+            if (password.Length < 8)
+            {
+                MessageBox.Show("Password must be at least 8 characters long.");
+                return;
+            }
+
             // Check if any of the required fields are empty
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(password))
             {
@@ -82,8 +96,22 @@ namespace AirlineManagementSystem
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-
         }
+
+        // Validate email address format using a regular expression
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         private void ClearRegistrationFields()
         {
             txtBoxPhoneNumber.Clear();

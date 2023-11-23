@@ -67,7 +67,7 @@
             this.TotalRevenueAdmin.ForeColor = System.Drawing.Color.White;
             this.TotalRevenueAdmin.Location = new System.Drawing.Point(622, 161);
             this.TotalRevenueAdmin.Name = "TotalRevenueAdmin";
-            this.TotalRevenueAdmin.Size = new System.Drawing.Size(85, 60);
+            this.TotalRevenueAdmin.Size = new System.Drawing.Size(98, 60);
             this.TotalRevenueAdmin.TabIndex = 2;
             this.TotalRevenueAdmin.Text = "Total Revenue";
             this.TotalRevenueAdmin.UseVisualStyleBackColor = false;
@@ -77,7 +77,7 @@
             // 
             this.TotalRevenue.AutoSize = true;
             this.TotalRevenue.Font = new System.Drawing.Font("Nirmala UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalRevenue.Location = new System.Drawing.Point(632, 224);
+            this.TotalRevenue.Location = new System.Drawing.Point(617, 224);
             this.TotalRevenue.Name = "TotalRevenue";
             this.TotalRevenue.Size = new System.Drawing.Size(65, 28);
             this.TotalRevenue.TabIndex = 3;
@@ -103,7 +103,7 @@
             // 
             this.PerPlaneRevenure.AutoSize = true;
             this.PerPlaneRevenure.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PerPlaneRevenure.Location = new System.Drawing.Point(265, 392);
+            this.PerPlaneRevenure.Location = new System.Drawing.Point(186, 392);
             this.PerPlaneRevenure.Name = "PerPlaneRevenure";
             this.PerPlaneRevenure.Size = new System.Drawing.Size(55, 23);
             this.PerPlaneRevenure.TabIndex = 6;
