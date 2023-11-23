@@ -12,6 +12,24 @@ namespace AirlineManagementSystem.BL
 {
     internal class ticketsBL
     {
+        private static string labeltext;
+
+        public static string Labeltext { get => labeltext; set => labeltext = value; }
+
+        private static ticketsBL instance;
+        public static ticketsBL Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ticketsBL();
+                }
+                return instance;
+            }
+        }
+
+
         public static void BookTicketMethod(int planeID, int customerID)
         {
             try
@@ -128,6 +146,52 @@ namespace AirlineManagementSystem.BL
             }
 
             return dataTable;
+        }
+        public static void CalculateTotalRevenue(string planeName)
+        {
+            try
+            {
+                String ConnectionStr = @"Data Source=(local);Initial Catalog=AirplaneManagementSystem;Integrated Security=True";
+                var con = configuration.getInstance().getConnection();
+                if (con.State == ConnectionState.Closed)
+                {
+                    con = new SqlConnection(ConnectionStr);
+                    con.Open();
+                }
+
+                // SQL query to retrieve the total revenue for the specified plane
+                string totalRevenueQuery = "SELECT SUM(PlanePrices.TicketPrice) AS TotalRevenue " +
+                                           "FROM Planes " +
+                                           "JOIN PlanePrices ON Planes.PlaneID = PlanePrices.PlaneID " +
+                                           "WHERE Planes.PlaneName = @PlaneName";
+
+                using (SqlCommand command = new SqlCommand(totalRevenueQuery, con))
+                {
+                    command.Parameters.AddWithValue("@PlaneName", planeName);
+
+                    //con.Open();
+
+                    // Execute the query
+                    object result = command.ExecuteScalar();
+
+                    // Close the connection
+                    //con.Close();
+
+                    // Update the label with the total revenue
+                    if (result != null && result != DBNull.Value)
+                    {
+                        Labeltext = $"Total Revenue for {planeName}: ${result}";
+                    }
+                    else
+                    {
+                        Labeltext = "No revenue data available.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error calculating total revenue: " + ex.Message);
+            }
         }
 
     }

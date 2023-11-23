@@ -33,6 +33,8 @@
             this.TotalRevenueAdmin = new System.Windows.Forms.Button();
             this.TotalRevenue = new System.Windows.Forms.Label();
             this.SearchPlaneNameToSeeRevenue = new System.Windows.Forms.Button();
+            this.PerPlaneRevenure = new System.Windows.Forms.Label();
+            this.singlePlane = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRevenue)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,6 +97,33 @@
             this.SearchPlaneNameToSeeRevenue.TabIndex = 4;
             this.SearchPlaneNameToSeeRevenue.Text = "Search";
             this.SearchPlaneNameToSeeRevenue.UseVisualStyleBackColor = false;
+            this.SearchPlaneNameToSeeRevenue.Click += new System.EventHandler(this.SearchPlaneNameToSeeRevenue_Click);
+            // 
+            // PerPlaneRevenure
+            // 
+            this.PerPlaneRevenure.AutoSize = true;
+            this.PerPlaneRevenure.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PerPlaneRevenure.Location = new System.Drawing.Point(418, 392);
+            this.PerPlaneRevenure.Name = "PerPlaneRevenure";
+            this.PerPlaneRevenure.Size = new System.Drawing.Size(55, 23);
+            this.PerPlaneRevenure.TabIndex = 6;
+            this.PerPlaneRevenure.Text = "00.00";
+            // 
+            // singlePlane
+            // 
+            this.singlePlane.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.singlePlane.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.singlePlane.FlatAppearance.BorderSize = 0;
+            this.singlePlane.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.singlePlane.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.singlePlane.ForeColor = System.Drawing.Color.White;
+            this.singlePlane.Location = new System.Drawing.Point(616, 277);
+            this.singlePlane.Name = "singlePlane";
+            this.singlePlane.Size = new System.Drawing.Size(91, 41);
+            this.singlePlane.TabIndex = 7;
+            this.singlePlane.Text = "Calculate";
+            this.singlePlane.UseVisualStyleBackColor = false;
+            this.singlePlane.Click += new System.EventHandler(this.singlePlane_Click);
             // 
             // revenueAdmin
             // 
@@ -102,6 +131,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.singlePlane);
+            this.Controls.Add(this.PerPlaneRevenure);
             this.Controls.Add(this.SearchPlaneNameToSeeRevenue);
             this.Controls.Add(this.TotalRevenue);
             this.Controls.Add(this.TotalRevenueAdmin);
@@ -123,5 +154,7 @@
         private System.Windows.Forms.Button TotalRevenueAdmin;
         private System.Windows.Forms.Label TotalRevenue;
         private System.Windows.Forms.Button SearchPlaneNameToSeeRevenue;
+        private System.Windows.Forms.Label PerPlaneRevenure;
+        private System.Windows.Forms.Button singlePlane;
     }
 }
