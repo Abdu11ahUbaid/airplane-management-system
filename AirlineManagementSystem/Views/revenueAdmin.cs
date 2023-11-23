@@ -71,9 +71,13 @@ namespace AirlineManagementSystem.Views
             }
         }
 
-        private void singlePlane_Click(object sender, EventArgs e)
+        private void TotalRevenueAdmin_Click(object sender, EventArgs e)
         {
-            
+            // Call the method to calculate the total revenue
+            decimal totalRevenue = ticketsBL.CalculateTotalRevenue();
+
+            // Display the total revenue in your label or wherever you want
+            TotalRevenue.Text = totalRevenue.ToString("0.00");
         }
     }
 }

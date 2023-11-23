@@ -180,7 +180,7 @@ namespace AirlineManagementSystem.BL
                     // Update the label with the total revenue
                     if (result != null && result != DBNull.Value)
                     {
-                        Labeltext = $"Total Revenue for {planeName}: ${result}";
+                        Labeltext = $"Total Revenue for {planeName}: {result}";
                     }
                     else
                     {
@@ -193,6 +193,42 @@ namespace AirlineManagementSystem.BL
                 MessageBox.Show("Error calculating total revenue: " + ex.Message);
             }
         }
+
+        public static decimal CalculateTotalRevenue()
+        {
+            decimal totalRevenue = 0;
+
+            try
+            {
+                var con = configuration.getInstance().getConnection();
+
+                // Write a SQL query to retrieve ticket prices for all booked tickets
+                string selectTotalRevenueQuery = "SELECT SUM(PlanePrices.TicketPrice) AS TotalRevenue " +
+                                                 "FROM Tickets " +
+                                                 "JOIN Planes ON Tickets.PlaneID = Planes.PlaneID " +
+                                                 "JOIN PlanePrices ON Planes.PlaneID = PlanePrices.PlaneID " +
+                                                 "WHERE Tickets.Status = 'Booked'";
+
+                // Execute the query
+                using (SqlCommand command = new SqlCommand(selectTotalRevenueQuery, con))
+                {
+                    // Read the result
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        totalRevenue = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error calculating total revenue: " + ex.Message);
+            }
+
+            return totalRevenue;
+        }
+
 
     }
 }

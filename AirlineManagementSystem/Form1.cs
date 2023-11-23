@@ -37,44 +37,52 @@ namespace AirlineManagementSystem
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             // Get user input from the registration form
-            string username = txtUsername.Text;
-            string email = txtbxEmail.Text;
-            string phone = txtBoxPhoneNumber.Text;
+            string username = txtUsername.Text.Trim();
+            string email = txtbxEmail.Text.Trim();
+            string phone = txtBoxPhoneNumber.Text.Trim();
             string password = txtPassword.Text;
+
+            // Check if any of the required fields are empty
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Please fill in all the required fields.");
+                return;
+            }
 
             try
             {
                 var con = configuration.getInstance().getConnection();
 
-                    // Define the SQL query to insert a new customer
-                string insertQuery = "INSERT INTO Customers (Name, Email, Phone, Password) " +
-                                         "VALUES (@Name, @Email, @Phone, @Password)";
+                // Define the SQL query to insert a new customer
+                string insertQuery = "INSERT INTO Customers (Name, Email, Phone, Password, IsActive) " +
+                                     "VALUES (@Name, @Email, @Phone, @Password, 1)";
 
-                    using (SqlCommand command = new SqlCommand(insertQuery, con))
+                using (SqlCommand command = new SqlCommand(insertQuery, con))
+                {
+                    command.Parameters.AddWithValue("@Name", username);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Phone", phone);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
                     {
-                        command.Parameters.AddWithValue("@Name", username);
-                        command.Parameters.AddWithValue("@Email", email);
-                        command.Parameters.AddWithValue("@Phone", phone);
-                        command.Parameters.AddWithValue("@Password", password);
-
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Registration successful.");
-                            // Clear the registration form fields
-                            ClearRegistrationFields();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Registration failed. Please try again.");
-                        }
+                        MessageBox.Show("Registration successful.");
+                        // Clear the registration form fields
+                        ClearRegistrationFields();
                     }
+                    else
+                    {
+                        MessageBox.Show("Registration failed. Please try again.");
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
         private void ClearRegistrationFields()
         {
