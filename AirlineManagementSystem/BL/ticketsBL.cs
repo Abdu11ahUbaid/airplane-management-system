@@ -7,12 +7,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
 
 namespace AirlineManagementSystem.BL
 {
     internal class ticketsBL
     {
         private static string labeltext;
+
+        private int ticketID;
+
+        private string status;
+
+        public int TicketID { get => ticketID; set => ticketID = value; } 
+
+        public string Status { get => status; set => status = value; }
 
         public static string Labeltext { get => labeltext; set => labeltext = value; }
 
@@ -125,10 +134,14 @@ namespace AirlineManagementSystem.BL
                     con.Open();
                 }
 
-                string selectTicketHistoryQuery = "SELECT t.TicketID, p.PlaneName, t.PurchaseDate, t.Status " +
-                                                  "FROM Tickets t " +
-                                                  "JOIN Planes p ON t.PlaneID = p.PlaneID " +
-                                                  "WHERE t.CustomerID = @CustomerID";
+                string selectTicketHistoryQuery = "SELECT p.PlaneName, t.PurchaseDate, t.Status, pp.TicketPrice, departureCity.CityName AS DepartureCity, arrivalCity.CityName AS ArrivalCity " +
+                                                    "FROM Tickets t " +
+                                                    "JOIN Planes p ON t.PlaneID = p.PlaneID " +
+                                                    "JOIN PlanePrices pp ON p.PlaneID = pp.PlaneID " +
+                                                    "JOIN FlightRoutes fr ON t.PlaneID = fr.PlaneID " +
+                                                    "JOIN Cities departureCity ON fr.DepartureCityID = departureCity.CityID " +
+                                                    "JOIN Cities arrivalCity ON fr.ArrivalCityID = arrivalCity.CityID " +
+                                                    "WHERE t.CustomerID = @CustomerID AND(t.Status = 'Booked' OR t.Status = 'Cancelled')" ;
 
                 using (SqlCommand command = new SqlCommand(selectTicketHistoryQuery, con))
                 {

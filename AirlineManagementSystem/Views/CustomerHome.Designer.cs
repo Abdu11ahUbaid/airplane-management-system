@@ -31,7 +31,8 @@
             this.ticketsHistoryGridCustomer = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SearchTickets = new System.Windows.Forms.Button();
+            this.CancelTicket = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ticketsHistoryGridCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,24 +62,41 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(218, 41);
+            this.textBox1.Location = new System.Drawing.Point(138, 42);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(328, 22);
             this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "Enter Plane Name";
             // 
-            // button1
+            // SearchTickets
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(552, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 32);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = false;
+            this.SearchTickets.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.SearchTickets.FlatAppearance.BorderSize = 0;
+            this.SearchTickets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.SearchTickets.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchTickets.ForeColor = System.Drawing.Color.White;
+            this.SearchTickets.Location = new System.Drawing.Point(472, 36);
+            this.SearchTickets.Name = "SearchTickets";
+            this.SearchTickets.Size = new System.Drawing.Size(77, 32);
+            this.SearchTickets.TabIndex = 3;
+            this.SearchTickets.Text = "Search";
+            this.SearchTickets.UseVisualStyleBackColor = false;
+            this.SearchTickets.Click += new System.EventHandler(this.SearchTickets_Click);
+            // 
+            // CancelTicket
+            // 
+            this.CancelTicket.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
+            this.CancelTicket.FlatAppearance.BorderSize = 0;
+            this.CancelTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CancelTicket.Font = new System.Drawing.Font("Nirmala UI", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CancelTicket.ForeColor = System.Drawing.Color.White;
+            this.CancelTicket.Location = new System.Drawing.Point(619, 36);
+            this.CancelTicket.Name = "CancelTicket";
+            this.CancelTicket.Size = new System.Drawing.Size(77, 57);
+            this.CancelTicket.TabIndex = 3;
+            this.CancelTicket.Text = "Cancel Ticket";
+            this.CancelTicket.UseVisualStyleBackColor = false;
+            this.CancelTicket.Click += new System.EventHandler(this.CancelTicket_Click);
             // 
             // CustomerHome
             // 
@@ -86,7 +104,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.CancelTicket);
+            this.Controls.Add(this.SearchTickets);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ticketsHistoryGridCustomer);
@@ -104,6 +123,7 @@
         private System.Windows.Forms.DataGridView ticketsHistoryGridCustomer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SearchTickets;
+        private System.Windows.Forms.Button CancelTicket;
     }
 }
