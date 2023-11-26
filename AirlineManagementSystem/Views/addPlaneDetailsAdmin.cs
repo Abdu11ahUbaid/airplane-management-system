@@ -1,14 +1,7 @@
 ﻿using AirlineManagementSystem.BL;
 using AirlineManagementSystem.DL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AirlineManagementSystem.Views
@@ -24,14 +17,33 @@ namespace AirlineManagementSystem.Views
         {
             planesBL planes = new planesBL();
 
-            // Capture input data from the form
+           // Capture input data from the form
             planes.PlaneName = PlaneNametxtBox.Text;
             planes.PlaneType = PlaneTypeTxtbox.Text;
-            planes.TicketPrice = decimal.Parse(TicketPriceTxtBox.Text);
+
+            // Validate and parse TicketPrice
+            if (decimal.TryParse(TicketPriceTxtBox.Text, out decimal ticketPrice))
+            {
+                planes.TicketPrice = ticketPrice;
+            }
+            else
+            {
+                MessageBox.Show("Invalid Ticket Price. Please enter a valid decimal value.");
+                return;
+            }
+
             planes.ArrivalTime = PlaneArrivaldateTimePicker.Value;
             planes.DepartureTime = PlaneDeptdateTimePicker.Value;
-            planes.DepartureCity = DeparturecomboBox.SelectedItem.ToString(); 
-            planes.ArrivalCity = ArrivalcomboBox.SelectedItem.ToString(); 
+
+            // Validate Departure City and Arrival City
+            if (DeparturecomboBox.SelectedItem == null || ArrivalcomboBox.SelectedItem == null)
+            {
+                MessageBox.Show("Please select both Departure and Arrival Cities.");
+                return;
+            }
+
+            planes.DepartureCity = DeparturecomboBox.SelectedItem.ToString();
+            planes.ArrivalCity = ArrivalcomboBox.SelectedItem.ToString();
 
             try
             {
@@ -124,7 +136,9 @@ namespace AirlineManagementSystem.Views
                     {
                         // Rollback the transaction in case of an exception
                         transaction.Rollback();
-
+                        //LogException function call to write/log exception into database
+                        Exception_Handling.exceptionHandling.LogException(ex, "addPlaneDetailsAdmin", "AddPlaneAdminBtnOkay_Click");
+                        //Show Error message on the screen
                         MessageBox.Show("Error: " + ex.Message);
                         this.Close();
                     }
@@ -132,6 +146,9 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                Exception_Handling.exceptionHandling.LogException(ex, "addPlaneDetailsAdmin", "AddPlaneAdminBtnOkay_Click");
+                //Show Error message on the screen
                 MessageBox.Show("Error: " + ex.Message);
             }
         }

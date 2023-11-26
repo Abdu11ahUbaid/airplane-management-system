@@ -48,6 +48,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                Exception_Handling.exceptionHandling.LogException(ex, "revenueAdmin", "RefreshDataGridViewForPlane");
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }

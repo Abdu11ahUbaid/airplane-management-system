@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Configuration;
+using AirlineManagementSystem.Exception_Handling;
 
 namespace AirlineManagementSystem
 {
@@ -94,7 +87,8 @@ namespace AirlineManagementSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "formRegistration", "RegisterButton_Click");
             }
         }
 

@@ -48,6 +48,7 @@
             // 
             this.customerGridAdmin.AllowUserToAddRows = false;
             this.customerGridAdmin.AllowUserToDeleteRows = false;
+            this.customerGridAdmin.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.customerGridAdmin.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customerGridAdmin.Location = new System.Drawing.Point(55, 85);
             this.customerGridAdmin.Name = "customerGridAdmin";
