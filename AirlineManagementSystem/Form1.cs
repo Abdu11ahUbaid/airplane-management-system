@@ -60,7 +60,7 @@ namespace AirlineManagementSystem
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Define the SQL query to insert a new customer
+                // SQL query to insert a new customer
                 string insertQuery = "INSERT INTO Customers (Name, Email, Phone, Password, IsActive) " +
                                      "VALUES (@Name, @Email, @Phone, @Password, 1)";
 

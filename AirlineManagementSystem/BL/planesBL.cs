@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AirlineManagementSystem.Exception_Handling;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -77,6 +78,8 @@ namespace AirlineManagementSystem.BL
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "planesBL", "GetCityID");
                 MessageBox.Show("Error in GetCityID: " + ex.Message);
             }
 

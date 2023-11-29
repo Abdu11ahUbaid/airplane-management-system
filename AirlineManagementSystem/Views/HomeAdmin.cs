@@ -51,6 +51,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "HomeAdmin", "RefreshDataGridView");
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }

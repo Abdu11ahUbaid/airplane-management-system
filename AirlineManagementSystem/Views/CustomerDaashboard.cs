@@ -1,12 +1,5 @@
 ﻿using AirlineManagementSystem.BL;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AirlineManagementSystem.Views
@@ -16,29 +9,28 @@ namespace AirlineManagementSystem.Views
         public CustomerDaashboard()
         {
             InitializeComponent();
-            // Capture the Username/Name of the Customer by using it Email at the login Time
-            //string loggedInEmail = customerBL.Instance.LoggedInEmail;
-            //string username = customerBL.GetUsernameFromEmail(loggedInEmail);
-
-            // Now 'username' contains the username of the logged-in customer
-            //nameCustomerLabel.Text = username;
+            // Load the Home Screen
             loadform(new CustomerHome());
 
         }
 
         private void CloseAppCustomerbtn_Click(object sender, EventArgs e)
         {
+            //Close application
             Application.Exit();
         }
 
         private void signOutCustomerbtn_Click(object sender, EventArgs e)
         {
+            // Sign out/Close the Customer Interface
             this.Close();
+            // Create  New Login Form
             frmLogin login = new frmLogin();
-
+            // Show the Login Form
             login.Show();
         }
 
+        // Method to load the child forms in the parent panel
         public void loadform(object Form)
         {
             if (this.PanelCustomerMain.Controls.Count > 0)
@@ -53,19 +45,14 @@ namespace AirlineManagementSystem.Views
 
         private void HomeCustomer_Click(object sender, EventArgs e)
         {
+            // Load Home screen/Form
             loadform(new CustomerHome());
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            // Load the Search Flights Customer Form
             loadform(new SearchFlightsCustomerForm());
-        }
-
-        
-
-        private void nameCustomerLabel_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

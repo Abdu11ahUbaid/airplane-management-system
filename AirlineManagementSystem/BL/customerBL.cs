@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AirlineManagementSystem.BL
@@ -56,43 +50,8 @@ namespace AirlineManagementSystem.BL
                         return Convert.ToInt32(result);
                     }
                 }
-            
 
-            return -1; // Return a default value or handle the absence of the customer ID based on your application's logic
+            return -1; // Return a default value or handle the absence of the customer ID
         }
-
-        public static string GetUsernameFromEmail(string loggedInEmail)
-        {
-            string username = null;
-
-            try
-            {
-                var con = configuration.getInstance().getConnection();
-
-                string selectUsernameQuery = "SELECT Username FROM Customers WHERE Email = @Email";
-
-                using (SqlCommand command = new SqlCommand(selectUsernameQuery, con))
-                {
-                    command.Parameters.AddWithValue("@Email", loggedInEmail);
-
-                    con.Open();
-
-                    object result = command.ExecuteScalar();
-
-                    if (result != null && result != DBNull.Value)
-                    {
-                        username = result.ToString();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
-            return username;
-        }
-
-        // Add other methods for customer-related operations
     }
 }

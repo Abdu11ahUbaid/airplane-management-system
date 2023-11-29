@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Windows.Forms;
 
 namespace AirlineManagementSystem.Views
@@ -18,6 +15,8 @@ namespace AirlineManagementSystem.Views
         {
 
         }
+
+        // Method to Load the child Forms into the Parent Panel
         public void loadform(object Form)
         {
             if (this.panel1.Controls.Count > 0)
@@ -53,16 +52,19 @@ namespace AirlineManagementSystem.Views
 
         private void HomeAdmin_Click_1(object sender, EventArgs e)
         {
+            // Load The Home Form in the Parent Panel
             loadform(new HomeAdmin());
         }
 
         private void PlaneManagementAdminbtn_Click_1(object sender, EventArgs e)
         {
+            // Load The Planes Management Form in the Parent Panel
             loadform(new planesManagementAdmin());
         }
 
         private void customerManagementBtn_Click_1(object sender, EventArgs e)
         {
+            // Load The Customer Management Form in the Parent Panel
             loadform(new customerManagementAdmin());
         }
 
@@ -70,31 +72,38 @@ namespace AirlineManagementSystem.Views
 
         private void ReportsAdminBtn_Click_1(object sender, EventArgs e)
         {
+            // Load The Report Form in the Parent Panel
             loadform(new ReportsAdmin());
         }
 
         private void signOutAdminbtn_Click_1(object sender, EventArgs e)
         {
+            // Sign Out/Closes the Admin account
             this.Close();
+            // Creating the new Login form 
             frmLogin login = new frmLogin();
-
+            // Display the Login screen
             login.Show();
         }
 
         private void CloseAppAdminbtn_Click_1(object sender, EventArgs e)
         {
+            //Closes the application
             Application.Exit();
-            this.Close();
+            
             
         }
 
         private void TicketsManagementAdmin_Click(object sender, EventArgs e)
         {
+            // Load The TicketManagement Form in the Parent Panel
             loadform(new ticketManagementAdmin());
         }
 
         private void RevenueAdmin_Click(object sender, EventArgs e)
         {
+
+            // Load The Revenue Form in the Parent Panel
             loadform(new revenueAdmin());
         }
     }

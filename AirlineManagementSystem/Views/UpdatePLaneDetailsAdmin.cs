@@ -107,21 +107,21 @@ namespace AirlineManagementSystem.Views
                         MessageBox.Show("Plane record updated successfully.");
                         
                         this.Close();
-
-                        // Refresh the DataGridView to reflect the changes
-                        /*RefreshDataGridView();*/
                     }
                     catch (Exception ex)
                     {
                         // Rollback the transaction in case of an exception
                         transaction.Rollback();
-
+                        //LogException function call to write/log exception into database
+                        Exception_Handling.exceptionHandling.LogException(ex, "UpdatePLaneDetailsAdmin", "AddPlaneAdminBtnOkay_Click");
                         MessageBox.Show("Error: " + ex.Message);
                     }
                 }
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                Exception_Handling.exceptionHandling.LogException(ex, "UpdatePLaneDetailsAdmin", "AddPlaneAdminBtnOkay_Click");
                 MessageBox.Show("Error: " + ex.Message);
             }
 

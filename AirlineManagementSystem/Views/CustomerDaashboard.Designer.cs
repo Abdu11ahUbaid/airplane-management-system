@@ -36,7 +36,6 @@
             this.signOutCustomerbtn = new System.Windows.Forms.Button();
             this.HomeCustomer = new System.Windows.Forms.Button();
             this.PanelCustomerheader = new System.Windows.Forms.Panel();
-            this.nameCustomerLabel = new System.Windows.Forms.Label();
             this.welcometxtlabelCustomer = new System.Windows.Forms.Label();
             this.CloseAppCustomerbtn = new System.Windows.Forms.Button();
             this.PanelCustomerSide.SuspendLayout();
@@ -122,7 +121,6 @@
             // PanelCustomerheader
             // 
             this.PanelCustomerheader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(86)))), ((int)(((byte)(174)))));
-            this.PanelCustomerheader.Controls.Add(this.nameCustomerLabel);
             this.PanelCustomerheader.Controls.Add(this.welcometxtlabelCustomer);
             this.PanelCustomerheader.Controls.Add(this.CloseAppCustomerbtn);
             this.PanelCustomerheader.Dock = System.Windows.Forms.DockStyle.Top;
@@ -131,18 +129,6 @@
             this.PanelCustomerheader.Size = new System.Drawing.Size(945, 38);
             this.PanelCustomerheader.TabIndex = 7;
             // 
-            // nameCustomerLabel
-            // 
-            this.nameCustomerLabel.AutoSize = true;
-            this.nameCustomerLabel.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nameCustomerLabel.ForeColor = System.Drawing.Color.White;
-            this.nameCustomerLabel.Location = new System.Drawing.Point(537, 9);
-            this.nameCustomerLabel.Name = "nameCustomerLabel";
-            this.nameCustomerLabel.Size = new System.Drawing.Size(57, 23);
-            this.nameCustomerLabel.TabIndex = 0;
-            this.nameCustomerLabel.Text = "Name";
-            this.nameCustomerLabel.Click += new System.EventHandler(this.nameCustomerLabel_Click);
-            // 
             // welcometxtlabelCustomer
             // 
             this.welcometxtlabelCustomer.AutoSize = true;
@@ -150,9 +136,9 @@
             this.welcometxtlabelCustomer.ForeColor = System.Drawing.Color.White;
             this.welcometxtlabelCustomer.Location = new System.Drawing.Point(437, 8);
             this.welcometxtlabelCustomer.Name = "welcometxtlabelCustomer";
-            this.welcometxtlabelCustomer.Size = new System.Drawing.Size(94, 23);
+            this.welcometxtlabelCustomer.Size = new System.Drawing.Size(84, 23);
             this.welcometxtlabelCustomer.TabIndex = 0;
-            this.welcometxtlabelCustomer.Text = "Welcome, ";
+            this.welcometxtlabelCustomer.Text = "Welcome";
             // 
             // CloseAppCustomerbtn
             // 
@@ -196,7 +182,6 @@
         private System.Windows.Forms.Button signOutCustomerbtn;
         private System.Windows.Forms.Button HomeCustomer;
         private System.Windows.Forms.Panel PanelCustomerheader;
-        private System.Windows.Forms.Label nameCustomerLabel;
         private System.Windows.Forms.Label welcometxtlabelCustomer;
         private System.Windows.Forms.Button CloseAppCustomerbtn;
         private System.Windows.Forms.Button button1;

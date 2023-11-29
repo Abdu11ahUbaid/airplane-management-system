@@ -22,7 +22,7 @@ namespace AirlineManagementSystem.Views
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Write a SQL query to retrieve ticket details for the specified plane
+                // SQL query to retrieve ticket details for the specified plane
                 string selectTicketsQuery = "SELECT Tickets.TicketID, Customers.Name AS CustomerName, Customers.Email, " +
                                             "Planes.PlaneName, PlanePrices.TicketPrice, Tickets.PurchaseDate, " +
                                             "FlightRoutes.DepartureTime, FlightRoutes.ArrivalTime, Tickets.Status " +

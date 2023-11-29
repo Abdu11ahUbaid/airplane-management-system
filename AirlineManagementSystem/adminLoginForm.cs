@@ -30,7 +30,7 @@ namespace AirlineManagementSystem
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Define the SQL query to check customer credentials
+                //SQL query to check customer credentials
                 string selectQuery = "SELECT COUNT(*) FROM Admins WHERE Username = @Username AND Password = @Password";
 
                 using (SqlCommand command = new SqlCommand(selectQuery, con))
@@ -53,6 +53,8 @@ namespace AirlineManagementSystem
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "adminLoginForm", "LoginAdminBtn_Click");
                 MessageBox.Show("Error: " + ex.Message);
             }
 

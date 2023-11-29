@@ -1,4 +1,6 @@
-﻿using AirlineManagementSystem.BL;
+﻿// Form where Admin can see the details of all the customers 
+
+using AirlineManagementSystem.BL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -57,6 +59,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "customerManagementAdmin", "RefreshDataGridViewSearchResults");
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }
@@ -85,6 +89,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "customerManagementAdmin", "RefreshDataGridView");
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }

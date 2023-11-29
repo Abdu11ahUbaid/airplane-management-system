@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AirlineManagementSystem.DL;
 using AirlineManagementSystem.BL;
@@ -22,9 +16,7 @@ namespace AirlineManagementSystem.Views
         }
 
         private void DeparturecomboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           // RefreshGridView();
-        }
+        { }
 
         private void ArrivalcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -65,6 +57,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                Exception_Handling.exceptionHandling.LogException(ex, "SearchFlightsCustomerForm", "RefreshGridView");
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }
@@ -90,104 +84,6 @@ namespace AirlineManagementSystem.Views
                 MessageBox.Show("Please select a plane to book.");
             }
         }
-
-        /*private int GetCustomerIDFromDatabase(string username)
-        {
-            // Building Connection with database
-            using (var con = configuration.getInstance().getConnection())
-            {   // Query to get the ID of the customer based on his Email which we stored at the login time
-                string selectCustomerIDQuery = "SELECT CustomerID FROM Customers WHERE Email = @Email";
-
-                using (SqlCommand command = new SqlCommand(selectCustomerIDQuery, con))
-                {
-                    command.Parameters.AddWithValue("@Email", username);
-                    object result = command.ExecuteScalar();
-
-                    if (result != null && result != DBNull.Value)
-                    {
-                        return Convert.ToInt32(result);
-                    }
-                }
-            }
-           
-            return -1; // Return a default value or handle the absence of the customer ID based on your application's logic
-        }*/
-
-
-        /*private void BookTicketMethod(int planeID, int customerID)
-        {
-            try
-            {              
-                // Check if the ticket is already booked for the selected plane and customer
-                if (!IsTicketAlreadyBooked(planeID, customerID))
-                {
-                    String ConnectionStr = @"Data Source=(local);Initial Catalog=AirplaneManagementSystem;Integrated Security=True";
-                    var con = configuration.getInstance().getConnection();
-                    if (con.State == ConnectionState.Closed)
-                    {
-                        con = new SqlConnection(ConnectionStr);
-                        con.Open();
-                    }
-                    // The ticket is not booked, proceed with booking
-                    string bookTicketQuery = "INSERT INTO Tickets (PlaneID, CustomerID, PurchaseDate, Status) " +
-                                             "VALUES (@PlaneID, @CustomerID, GETDATE(), 'Booked')";
-
-                    using (SqlCommand command = new SqlCommand(bookTicketQuery, con))
-                    {
-                        command.Parameters.AddWithValue("@PlaneID", planeID);
-                        command.Parameters.AddWithValue("@CustomerID", customerID);
-
-                        // Execute the query
-                        int rowsAffected = command.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Ticket booked successfully!");
-                            // Optionally, you can update the status in the grid or refresh the grid
-                            //RefreshPlanesGridCustomer();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Failed to book the ticket.");
-                        }
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Ticket is already booked for this plane and customer.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private bool IsTicketAlreadyBooked(int planeID, int customerID)
-        {
-            String ConnectionStr = @"Data Source=(local);Initial Catalog=AirplaneManagementSystem;Integrated Security=True";
-            var con = configuration.getInstance().getConnection();
-            if (con.State == ConnectionState.Closed)
-            {
-                con = new SqlConnection(ConnectionStr);
-                con.Open();
-            }
-            string checkBookingQuery = "SELECT COUNT(*) FROM Tickets WHERE PlaneID = @PlaneID AND CustomerID = @CustomerID";
-
-            using (SqlCommand command = new SqlCommand(checkBookingQuery, con))
-            {
-                command.Parameters.AddWithValue("@PlaneID", planeID);
-                command.Parameters.AddWithValue("@CustomerID", customerID);
-
-                // Execute the query and check if any rows are returned
-                int rowCount = (int)command.ExecuteScalar();
-
-                return rowCount > 0;
-            }
-                // Check if the ticket is already booked for the selected plane and customer
-                
-        }*/
-
 
         private PlaneManagement GetPlaneDetails(string planeName)
         {
@@ -231,6 +127,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                Exception_Handling.exceptionHandling.LogException(ex, "SearchFlightsCustomerForm", "GetPlaneDetails");
                 MessageBox.Show("Error: " + ex.Message);
             }
 
@@ -239,24 +137,7 @@ namespace AirlineManagementSystem.Views
 
         private void PlanesSearchGridCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*// Check if the clicked cell is in the "PlaneName" column
-            if (e.ColumnIndex == PlanesSearchGridCustomer.Columns["PlaneName"].Index && e.RowIndex >= 0)
-            {
-                // Retrieve the value from the clicked cell's "PlaneName" column
-                string selectedPlaneName = PlanesSearchGridCustomer.Rows[e.RowIndex].Cells["PlaneName"].Value.ToString();
-
-                // Get the plane details based on the selected plane name
-                PlaneManagement selectedPlaneDetails = GetPlaneDetails(selectedPlaneName);
-
-                int selectedCustomerID = GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
-
-                // Book the ticket
-                BookTicketMethod(selectedPlaneDetails.PlaneID, selectedCustomerID);
-            }
-            else
-            {
-                MessageBox.Show("Please select a plane to book.");
-            }*/
+            
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TrackBar;
+using AirlineManagementSystem.Exception_Handling;
 
 namespace AirlineManagementSystem.BL
 {
@@ -84,6 +85,8 @@ namespace AirlineManagementSystem.BL
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "ticketsBL", "BookTicketMethod");
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
@@ -111,13 +114,6 @@ namespace AirlineManagementSystem.BL
             }
             // Check if the ticket is already booked for the selected plane and customer
 
-        }
-
-        public bool CancelTicket(int ticketId)
-        {
-            // Implement logic to cancel a ticket
-            // Return true if cancellation is successful, otherwise false
-            return false;
         }
 
         public static DataTable GetTicketHistory(int customerID)
@@ -155,6 +151,8 @@ namespace AirlineManagementSystem.BL
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "ticketsBL", "GetTicketHistory");
                 MessageBox.Show("Error: " + ex.Message);
             }
 
@@ -203,6 +201,8 @@ namespace AirlineManagementSystem.BL
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "ticketsBL", "CalculateTotalRevenue");
                 MessageBox.Show("Error calculating total revenue: " + ex.Message);
             }
         }

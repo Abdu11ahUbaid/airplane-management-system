@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AirlineManagementSystem.BL;
 
@@ -17,13 +11,18 @@ namespace AirlineManagementSystem.Views
         public CustomerHome()
         {
             InitializeComponent();
+            // Catpure the Customer ID at the time of login 
              customerID = customerBL.GetCustomerIDFromDatabase(customerBL.Instance.LoggedInEmail);
+            // Load the ticket history for the logged in customer using the captured ID
             LoadTicketHistory(customerID);
         }
-            int customerID;
+            int customerID; // To store the customer ID who is currently logged in
+
+        // Method to Load Ticket History
         private void LoadTicketHistory(int customerID)
         {
             DataTable ticketHistory = ticketsBL.GetTicketHistory(customerID);
+            // Populate the Grid with the Ticket History of the currently Logged in customer
             ticketsHistoryGridCustomer.DataSource = ticketHistory;
         }
 
@@ -81,7 +80,7 @@ namespace AirlineManagementSystem.Views
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Replace the following query with your actual logic to fetch ticket details based on the plane name
+                // SQL Query to fetch ticket details based on the plane name
                 string selectQuery = "SELECT t.TicketID, t.Status " +
                      "FROM Tickets t " +
                      "JOIN Planes p ON t.PlaneID = p.PlaneID " +
@@ -115,6 +114,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "CustomerHome", "GetTicketDetails");
                 MessageBox.Show("Error fetching ticket details: " + ex.Message);
                 return null;
             }
@@ -140,6 +141,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "CustomerHome", "UpdateTicketStatus");
                 MessageBox.Show("Error updating ticket status: " + ex.Message);
             }
         }
@@ -176,6 +179,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "CustomerHome", "RefreshDataGridView");
                 MessageBox.Show("Error refreshing DataGridView: " + ex.Message);
             }
         }

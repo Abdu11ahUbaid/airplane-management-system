@@ -1,4 +1,5 @@
-﻿using OfficeOpenXml;
+﻿using AirlineManagementSystem.Exception_Handling;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,14 +14,7 @@ namespace AirlineManagementSystem.BL
 {
     internal class adminBL
     {
-        public bool ValidateAdminLogin(string username, string password)
-        {
-            // Implement logic to validate admin login credentials
-            // Return true if credentials are valid, otherwise false
-            // You may want to hash the password and compare it with the stored hash
-            return false;
-        }
-
+      
         public static DataTable GetReportData(string reportType)
         {
            
@@ -69,6 +63,8 @@ namespace AirlineManagementSystem.BL
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "adminBL", "GetPlaneRecords");
                 MessageBox.Show("Error fetching plane records: " + ex.Message);
             }
 
@@ -101,6 +97,8 @@ namespace AirlineManagementSystem.BL
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "adminBL", "GetCustomerRecords");
                 MessageBox.Show("Error fetching customer records: " + ex.Message);
             }
 

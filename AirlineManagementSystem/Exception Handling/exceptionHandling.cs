@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// This class has method to do the exception handling in the program
+
+using System;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AirlineManagementSystem.Exception_Handling

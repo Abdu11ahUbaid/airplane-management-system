@@ -1,4 +1,6 @@
-﻿using AirlineManagementSystem.BL;
+﻿// THIS FORM BACKEND IS JUST ADDING THE NEW PLANES DETAILS IN TO THE DATABASE
+
+using AirlineManagementSystem.BL;
 using AirlineManagementSystem.DL;
 using System;
 using System.Data.SqlClient;
@@ -55,7 +57,7 @@ namespace AirlineManagementSystem.Views
                 {
                     try
                     {
-                        // Write an SQL INSERT statement to add a new record to the Cities table for Departure City
+                        // SQL Query INSERT statement to add a new record to the Cities table for Departure City
                         string insertDepartureCityQuery = "INSERT INTO Cities (CityName, CreatedAt, UpdatedAt, IsActive) " +
                                                           "VALUES (@DepartureCity, GETDATE(), GETDATE(), 1); SELECT SCOPE_IDENTITY();";
 
@@ -69,7 +71,7 @@ namespace AirlineManagementSystem.Views
                             departureCityId = Convert.ToInt32(command.ExecuteScalar());
                         }
 
-                        // Write an SQL INSERT statement to add a new record to the Cities table for Arrival City
+                        // SQL Query INSERT statement to add a new record to the Cities table for Arrival City
                         string insertArrivalCityQuery = "INSERT INTO Cities (CityName, CreatedAt, UpdatedAt, IsActive) " +
                                                         "VALUES (@ArrivalCity, GETDATE(), GETDATE(), 1); SELECT SCOPE_IDENTITY();";
 
@@ -83,7 +85,7 @@ namespace AirlineManagementSystem.Views
                             arrivalCityId = Convert.ToInt32(command.ExecuteScalar());
                         }
 
-                        // Write an SQL INSERT statement to add a new record to the Planes table
+                        // SQL Query INSERT statement to add a new record to the Planes table
                         string insertPlaneQuery = "INSERT INTO Planes (PlaneName, PlaneType, CreatedAt, UpdatedAt, IsActive) " +
                                                   "VALUES (@PlaneName, @PlaneType, GETDATE(), GETDATE(), 1); SELECT SCOPE_IDENTITY();";
 
@@ -98,7 +100,7 @@ namespace AirlineManagementSystem.Views
                             planeId = Convert.ToInt32(command.ExecuteScalar());
                         }
 
-                        // Write an SQL INSERT statement to add a new record to the FlightRoutes table
+                        // SQL Query INSERT statement to add a new record to the FlightRoutes table
                         string insertFlightRouteQuery = "INSERT INTO FlightRoutes (DepartureCityID, ArrivalCityID, PlaneID, DepartureTime, ArrivalTime, CreatedAt, UpdatedAt, IsActive) " +
                                                          "VALUES (@DepartureCityID, @ArrivalCityID, @PlaneID, @DepartureTime, @ArrivalTime, GETDATE(), GETDATE(), 1)";
                         using (SqlCommand command = new SqlCommand(insertFlightRouteQuery, con, transaction))
@@ -112,8 +114,7 @@ namespace AirlineManagementSystem.Views
                             command.ExecuteNonQuery();
                         }
 
-                        // Optionally, insert data into other related tables (e.g., PlanePrices, etc.)
-                        // Example: Insert into PlanePrices table
+                        // SQL Query to Insert Into PlanePrices Table
                         string insertPlanePriceQuery = "INSERT INTO PlanePrices (PlaneID, TicketPrice, CreatedAt, UpdatedAt, IsActive) " +
                                                        "VALUES (@PlaneID, @TicketPrice, GETDATE(), GETDATE(), 1)";
                         using (SqlCommand command = new SqlCommand(insertPlanePriceQuery, con, transaction))

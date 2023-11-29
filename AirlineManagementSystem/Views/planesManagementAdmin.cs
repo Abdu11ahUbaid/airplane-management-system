@@ -33,7 +33,7 @@ namespace AirlineManagementSystem.Views
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Write a SQL query to retrieve the added planes and related records
+                // SQL query to retrieve the added planes and related records
                 string selectPlanesQuery = "SELECT PlaneName, PlaneType, TicketPrice, DepartureTime, ArrivalTime, " +
                                    "DepartureCity.CityName AS DepartureCity, ArrivalCity.CityName AS ArrivalCity " +
                                    "FROM Planes " +
@@ -57,6 +57,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "planesManagementAdmin", "RefreshDataGridView");
                 MessageBox.Show("Error during data refresh: " + ex.Message);
             }
         }
@@ -68,6 +70,7 @@ namespace AirlineManagementSystem.Views
 
         private void PlaneUpdateBtn_Click(object sender, EventArgs e)
         {
+            // To update the plane details
             UpdatePLaneDetailsAdmin updatePLaneDetails = new UpdatePLaneDetailsAdmin();
             updatePLaneDetails.ShowDialog();
         }
@@ -76,25 +79,12 @@ namespace AirlineManagementSystem.Views
         {
 
         }
-        // Define a variable to store the selected PlaneID
-       /* planesBL planes = new planesBL();*/
+        
 
         private void planesGridAdmin_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            /*// Check if there's a selected row
-            if (planesGridAdmin.SelectedCells.Count > 0)
-            {
-                // Retrieve the value from the selected row's "PlaneName" column
-                string selectedPlaneName = planesGridAdmin.SelectedRows[0].Cells["PlaneName"].Value.ToString();
+        { }
 
-                // Use a method to get the PlaneID based on the selected plane name
-                planes.SelectedPlaneID = GetPlaneIDFromName(selectedPlaneName);
-            }*/
-        }
-
-        // Define a variable to store the selected PlaneID
-
-        // Example method to retrieve PlaneID from the database based on PlaneName
+        // method to retrieve PlaneID from the database based on PlaneName
         private int GetPlaneIDFromName(string planeName)
         {
             int planeID = -1; // Default value or error indicator
@@ -121,6 +111,8 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "planesManagementAdmin", "GetPlaneIDFromName");
                 MessageBox.Show("Error: " + ex.Message);
             }
 
@@ -145,15 +137,15 @@ namespace AirlineManagementSystem.Views
 
         private void deletePlanebtn_Click(object sender, EventArgs e)
         {
-            // Assuming you have controls on your form to capture selected data
+            
             string selectedPlaneName = planesGridAdmin.SelectedCells[0].Value.ToString();
-            int selectedPlaneID = GetPlaneIDFromName(selectedPlaneName); // Assuming you have the GetPlaneIDFromName method
+            int selectedPlaneID = GetPlaneIDFromName(selectedPlaneName); // we have the GetPlaneIDFromName method
 
             try
             {
                 var con = configuration.getInstance().getConnection();
 
-                // Write an SQL UPDATE statement to "soft delete" the record by setting IsActive to false
+                // SQL Query UPDATE statement to "soft delete" the record by setting IsActive to false
                 string deletePlaneQuery = "UPDATE Planes " +
                                           "SET IsActive = 0, " +
                                           "    UpdatedAt = GETDATE() " +
@@ -184,9 +176,48 @@ namespace AirlineManagementSystem.Views
             }
             catch (Exception ex)
             {
+                // Add the exception into the exception table
+                Exception_Handling.exceptionHandling.LogException(ex, "planesManagementAdmin", "deletePlanebtn_Click");
                 MessageBox.Show("Error: " + ex.Message);
             }
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SearchPlanes(SearchPlaneAdmin.Text);
+        }
+        private void SearchPlanes(string planeName)
+        {
+            try
+            {
+                var con = configuration.getInstance().getConnection();
+
+                // Modify the query to include a WHERE clause for filtering by plane name
+                string selectQuery = "SELECT PlaneID, PlaneName, PlaneType, CreatedAt, UpdatedAt, IsActive " +
+                                     "FROM Planes " +
+                                     "WHERE PlaneName LIKE @PlaneName";
+
+                using (SqlCommand command = new SqlCommand(selectQuery, con))
+                {
+                    // Use parameterized query to avoid SQL injection
+                    command.Parameters.AddWithValue("@PlaneName", "%" + planeName + "%");
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+
+                        // Bind the DataTable to your DataGridView
+                        planesGridAdmin.DataSource = dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error searching planes: " + ex.Message);
+            }
+        }
+
     }
 }

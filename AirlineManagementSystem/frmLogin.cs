@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using AirlineManagementSystem.Views;
 using AirlineManagementSystem.BL;
+using AirlineManagementSystem.Exception_Handling;
 
 namespace AirlineManagementSystem
 {
@@ -62,6 +63,8 @@ namespace AirlineManagementSystem
             }
             catch (Exception ex)
             {
+                //LogException function call to write/log exception into database
+                exceptionHandling.LogException(ex, "frmLogin", "RegisterButton_Click");
                 MessageBox.Show("Error: " + ex.Message);
             }
 
